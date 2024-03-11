@@ -563,7 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreCounter: {fileID: 1767776876}
-  _text: {fileID: 696859813}
+  _scoreText: {fileID: 696859813}
+  _maxScoreText: {fileID: 869287710}
 --- !u!114 &696859813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +828,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FireDirection>k__BackingField: {x: 1, y: 0, z: 0}
-  <Type>k__BackingField: 0
 --- !u!1 &776772150
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,7 +967,6 @@ GameObject:
   - component: {fileID: 869287708}
   - component: {fileID: 869287711}
   - component: {fileID: 869287710}
-  - component: {fileID: 869287709}
   m_Layer: 5
   m_Name: MaxScoreView
   m_TagString: Untagged
@@ -995,20 +994,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -350}
   m_SizeDelta: {x: 1331, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &869287709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869287707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855ffdcadc5bc134ab650df6073bb1d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scoreCounter: {fileID: 1767776876}
-  _text: {fileID: 869287710}
 --- !u!114 &869287710
 MonoBehaviour:
   m_ObjectHideFlags: 0

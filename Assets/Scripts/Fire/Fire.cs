@@ -9,22 +9,23 @@ public class Fire : IInteractable
 
     public event Action<Fire> Destroied;
 
-    public FireCreatorType CreatorType { get; private set; }
-
     private void Update()
     {
         transform.Translate(_speed * Time.deltaTime * _direction, Space.World);
     }
 
-    public void Destroy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroied?.Invoke(this);
+        if (collision.TryGetComponent(out Damageable damageable))
+        {
+            damageable.TakeDamage();
+            Destroied?.Invoke(this);
+        }
     }
 
     public void SetParameters(FireSpawnPoint attacker)
     {
         _direction = attacker.FireDirection.normalized;
-        CreatorType = attacker.Type;
         transform.position = attacker.transform.position;
     }
 }

@@ -11,7 +11,7 @@ public class EnemiesRemover : ObjectRemover
         {
             _enemiesPool.AddObject(enemy);
         }
-        else if (collision.TryGetComponent(out Fire fire) && fire.CreatorType == FireCreatorType.Enemy)
+        else if (collision.TryGetComponent(out Fire fire))
         {
             _firePool.AddObject(fire);
         }

@@ -1,26 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Damageable
 {
     [field: SerializeField] public FireSpawnPoint FireSpawnPoint { get; private set; }
-    [SerializeField] private EnemyCollisionHandler _handler;
 
     public event Action<Enemy> Died;
-
-    private void OnEnable()
-    {
-        _handler.CollisionDetected += CollisionWithFire;
-    }
-
-    private void OnDisable()
-    {
-        _handler.CollisionDetected -= CollisionWithFire;
-    }
-
-    private void CollisionWithFire(Fire fire)
+    
+    public override void TakeDamage()
     {
         Died?.Invoke(this);
     }

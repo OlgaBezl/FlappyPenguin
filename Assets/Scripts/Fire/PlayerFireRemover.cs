@@ -6,7 +6,7 @@ public class PlayerFireRemover : ObjectRemover
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out Fire fire) && fire.CreatorType == FireCreatorType.Player)
+        if (collision.TryGetComponent(out Fire fire))
         {
             _firePool.AddObject(fire);
         }

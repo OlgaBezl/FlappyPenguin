@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Mover))]
 [RequireComponent(typeof(PlayerCollisionHandler))]
-public class Player : MonoBehaviour
+public class Player : Damageable
 {
     [SerializeField] private Mover _mover;
     [SerializeField] private ScoreCounter _scoreCounter;
@@ -29,6 +27,11 @@ public class Player : MonoBehaviour
         _handler.CollisionDetected -= ProcessCollision;
     }
 
+    public override void TakeDamage()
+    {
+        GameOver?.Invoke();
+    }
+
     public void Reset()
     {
         _scoreCounter.Reset();
@@ -41,9 +44,9 @@ public class Player : MonoBehaviour
         {
             GameOver?.Invoke();
         }
-        else if (interactable is Fire fire && fire.CreatorType == FireCreatorType.Enemy)
-        {
-            GameOver?.Invoke();
-        }
+        //else if (interactable is Fire fire && fire.CreatorType == FireCreatorType.Enemy)
+        //{
+        //    GameOver?.Invoke();
+        //}
     }
 }

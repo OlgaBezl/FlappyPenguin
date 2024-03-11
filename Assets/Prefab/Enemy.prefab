@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FireSpawnPoint>k__BackingField: {fileID: 4567898803064157377}
-  _handler: {fileID: 464040816534996124}
 --- !u!95 &2942056692167594272
 Animator:
   serializedVersion: 5
@@ -206,9 +205,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1595590848188962805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5fa6a8d7f9b15448a30b56c83e123d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 96a4a933739ab9f429b238e7e2eeb537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <FireSpawnPoint>k__BackingField: {fileID: 4567898803064157377}
 --- !u!1 &3441165130060312078
 GameObject:
   m_ObjectHideFlags: 0
