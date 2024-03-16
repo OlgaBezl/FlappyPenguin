@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,8 @@ public class EnemiesPool : ObjectPool
 
     private Queue<Enemy> _pool;
 
-    public event Action<Enemy> AddedNew;
+    public event Action<Enemy> Getted;
+    public event Action<Enemy> Returned;
     public event Action EnemyDied;
 
     public IEnumerable<Enemy> PoolObjects => _pool;
@@ -40,13 +40,14 @@ public class EnemiesPool : ObjectPool
             Enemy newEnemy = Instantiate(_prefab);
             newEnemy.transform.parent = Container;
             newEnemy.Died += RecordEnemyDeath;
-            AddedNew?.Invoke(newEnemy);
+            Getted?.Invoke(newEnemy);
 
             return newEnemy;
         }
 
         Enemy enemy = _pool.Dequeue();
         enemy.gameObject.SetActive(true);
+        Getted?.Invoke(enemy);
 
         return enemy;
     }
@@ -55,6 +56,7 @@ public class EnemiesPool : ObjectPool
     {
         _pool.Enqueue(enemy);
         enemy.gameObject.SetActive(false);
+        Returned?.Invoke(enemy);
     }
 
     private void RecordEnemyDeath(Enemy enemy)

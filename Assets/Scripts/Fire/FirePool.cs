@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class FirePool : ObjectPool
@@ -26,7 +24,7 @@ public class FirePool : ObjectPool
 
     public override void Reset()
     {
-       OnDisable();
+        OnDisable();
         _pool.Clear();
     }
 

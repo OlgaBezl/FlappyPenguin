@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class Generator : MonoBehaviour
 {
     protected bool IsActive { get; private set; }
+    private Coroutine _coroutine;
 
     public void SetActive(bool isActive)
     {
@@ -10,14 +11,15 @@ public abstract class Generator : MonoBehaviour
 
         if (IsActive)
         {
-            StartGeneration();
+            _coroutine = StartGeneration();
         }
         else
         {
+            StopCoroutine(_coroutine);
             Reset();
         }
     }
 
-    public abstract void StartGeneration();
+    public abstract Coroutine StartGeneration();
     public abstract void Reset();
 }

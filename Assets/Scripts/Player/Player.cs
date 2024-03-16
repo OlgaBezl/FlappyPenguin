@@ -13,6 +13,7 @@ public class Player : Damageable
 
     private void Awake()
     {
+        Type = FireCreatorType.Player;
         _mover = GetComponent<Mover>();
         _handler = GetComponent<PlayerCollisionHandler>();
     }
@@ -40,13 +41,9 @@ public class Player : Damageable
 
     private void ProcessCollision(IInteractable interactable)
     {
-        if(interactable is Ground)
+        if (interactable is Ground)
         {
             GameOver?.Invoke();
         }
-        //else if (interactable is Fire fire && fire.CreatorType == FireCreatorType.Enemy)
-        //{
-        //    GameOver?.Invoke();
-        //}
     }
 }

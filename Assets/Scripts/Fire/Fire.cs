@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Fire : IInteractable
 {
-    [SerializeField] private float _speed = 5f;
-
     private Vector3 _direction;
+    private FireCreatorType _creatorType;
+    private float _speed;
 
     public event Action<Fire> Destroied;
 
@@ -18,14 +18,22 @@ public class Fire : IInteractable
     {
         if (collision.TryGetComponent(out Damageable damageable))
         {
-            damageable.TakeDamage();
-            Destroied?.Invoke(this);
+            if(damageable.Type != _creatorType)
+            {
+                damageable.TakeDamage();
+                Destroied?.Invoke(this);
+            }
         }
     }
 
-    public void SetParameters(FireSpawnPoint attacker)
+    public void SetParameters(Attacker attacker, FireCreatorType creatorType)
     {
         _direction = attacker.FireDirection.normalized;
+
+        _creatorType = creatorType;
+        _speed = attacker.Speed;
+
+        transform.localScale = new Vector3(-_direction.x, transform.localScale.y, transform.localScale.z);
         transform.position = attacker.transform.position;
     }
 }

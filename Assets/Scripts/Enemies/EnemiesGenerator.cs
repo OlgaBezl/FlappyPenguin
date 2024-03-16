@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemiesGenerator : Generator
@@ -9,9 +8,9 @@ public class EnemiesGenerator : Generator
     [SerializeField] private float _upperBound;
     [SerializeField] private EnemiesPool _enemiesPool;
 
-    public override void StartGeneration()
+    public override Coroutine StartGeneration()
     {
-        StartCoroutine(GeneratePipes());
+        return StartCoroutine(GenerateEnemies());
     }
 
     public override void Reset()
@@ -19,7 +18,7 @@ public class EnemiesGenerator : Generator
         _enemiesPool.Reset();
     }
 
-    private IEnumerator GeneratePipes()
+    private IEnumerator GenerateEnemies()
     {
         var wait = new WaitForSeconds(_delay);
 

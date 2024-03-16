@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class Game : MonoBehaviour
     [SerializeField] private List<Container> _containers;
     [SerializeField] private StartScreen _startScreen;
     [SerializeField] private EndScreen _endScreen;
+    [SerializeField] private Tracker _tracker;    
 
     private void Awake()
     {
@@ -41,10 +41,11 @@ public class Game : MonoBehaviour
 
     private void StartGame()
     {
+        _player.Reset();
+        _tracker.Reset();
+        _containers.ForEach(container => container.Clear());
         _startScreen.Close();
         _endScreen.Close();
-        _player.Reset();
-        _containers.ForEach(container => container.Clear());
         _generators.ForEach(generator => generator.SetActive(true));
 
         Time.timeScale = 1f;

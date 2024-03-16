@@ -2,11 +2,24 @@ using UnityEngine;
 
 public class PlayerFireGenerator : FireGenerator
 {
-    [SerializeField] private FireSpawnPoint _spawnPoint;
+    [SerializeField] private Attacker _spawnPoint;
 
-    public override void StartGeneration()
+    private bool _isReady;
+
+    private void Update()
     {
-        AddSpawnPoint(_spawnPoint);
-        base.StartGeneration();
+        if (_isReady)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                Spawn(_spawnPoint, FireCreatorType.Player);
+                _isReady = false;
+            }
+        }
+    }
+
+    protected override void PrepareForSpawn()
+    {
+        _isReady = true;
     }
 }
